@@ -25,8 +25,7 @@ document.addEventListener("alpine:init", () => {
       { id: 22, name: "Sop Iga\t", img: "sopiga.jpg", price: 15000, detail : "Gurih, lezat, hangat, kuah kental, daging empuk, wangi rempah, sehat, menggugah selera, cocok di musim hujan." },
       { id: 23, name: "Soto Ayam", img: "sotoayam.jpg", price: 15000, detail : "Kuah gurih dan hangat, ayam suwir yang empuk, dan aneka pelengkap yang menggoda, bikin kamu ketagihan!" },
       { id: 24, name: "Steak\t", img: "steak.jpg", price: 15000, detail : "Juicy, tender, grilled to perfection, savory, charred edges, medium rare, flavorful marinade, satisfying, premium cut, mouthwatering." },
-
-    ],
+    ]
   }));
 
   Alpine.store('cart', {
@@ -85,6 +84,24 @@ document.addEventListener("alpine:init", () => {
       const whatsappMessage = encodeURIComponent(`${message}\n\n${totalMessage}${customerMessage}`);
       const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
       window.open(whatsappUrl, '_blank');
+    },
+    show(id){
+      // Modal Box
+      const itemDetailModal = document.querySelector('#item-detail-modal');
+      const itemDetailButtons = document.querySelector('.item-detail-button');
+     
+      itemDetailModal.style.display = 'flex';
+
+      // klik di luar modal
+      window.onclick = (e) => {
+        if (e.target === itemDetailModal) {
+          itemDetailModal.style.display = 'none';
+        }
+      };
+    },
+    hide(){
+      // klik tombol close modal
+      itemDetailModal.style.display = 'none';
     }
   });
 });
@@ -117,4 +134,5 @@ const rupiah = (number) => {
     minimumFractionDigits: 0,
   }).format(number);
 }
+
 
