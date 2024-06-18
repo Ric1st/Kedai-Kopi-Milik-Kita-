@@ -463,12 +463,16 @@ body {
   border: 1px solid #666;
   padding: 1rem;
   border-radius: 0.5rem;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between;
 }
 
 .products .product-icons {
   display: flex;
   justify-content: center;
   gap: 0.5rem;
+  margin-top: auto; 
 }
 
 .products .product-icons a {
@@ -823,6 +827,9 @@ footer .credit a {
 
   .modal-content {
     flex-wrap: wrap;
+  }
+  .modal-content img {
+    margin-left: 23%;
   }
 }
 
