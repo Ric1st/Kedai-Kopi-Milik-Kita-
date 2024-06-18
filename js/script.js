@@ -41,52 +41,34 @@ document.addEventListener("click", function (e) {
   }
 });
 
-// Modal Box
-const itemDetailModal = document.querySelector("#item-detail-modal");
-const itemDetailButtons = document.querySelectorAll(".item-detail-button");
-
-itemDetailButtons.forEach((btn) => {
-  btn.onclick = (e) => {
-    itemDetailModal.style.display = "flex";
-    e.preventDefault();
-  };
-});
-
-// klik tombol close modal
-document.querySelector(".modal .close-icon").onclick = (e) => {
-  itemDetailModal.style.display = "none";
-  e.preventDefault();
-};
-
-// klik di luar modal
-window.onclick = (e) => {
-  if (e.target === itemDetailModal) {
-    itemDetailModal.style.display = "none";
-  }
-};
-
-/*document.querySelector('.btn-search').addEventListener('click', () => {
-  searchForm.classList.remove('active');
-  window.location.href = '#products';
-});*/
-
 function checkInput() {
   // Ambil nilai dari input pengguna
-  let input = document.getElementById("search-box").value;
+  let input = document.getElementById("search-box").value.toLowerCase();
 
-  // Logika if-else
-  if ((input === "makanan")) {
-    window.location.href = "#makanan";
-  } else if (input === "minuman") {
-    window.location.href = '#minuman';
+  // Daftar kata kunci dan id elemen
+  const keywords = {
+    makanan: "#makanan",
+    minuman: "#minuman",
+    home: "#home",
+    tentang: "#about",
+    menu: "#menu",
+    pemesanan: "#pemesanan",
+    hubungi: "#contact",
+  };
+
+  // Logika pencocokan kata kunci
+  if (keywords[input]) {
+    window.location.href = keywords[input];
+  } else {
+    alert("Item tidak ditemukan");
   }
 
-  document.getElementById("search-box").value = ""; 
-  searchForm.classList.remove('active');
+  document.getElementById("search-box").value = "";
+  searchForm.classList.remove("active");
 }
 
-document.getElementById('search-box').addEventListener('keypress', function(event) {
-  if (event.key === 'Enter') {
+document.getElementById("search-box").addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
       checkInput();
   }
 });

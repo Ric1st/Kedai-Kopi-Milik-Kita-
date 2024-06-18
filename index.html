@@ -23,30 +23,59 @@
 
     <!-- My Style -->
     <link rel="stylesheet" href="css/style.css" />
+
     <!-- Alpine js -->
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- My Javascript -->
     <script src="src/app.js" async></script>
   </head>
 
-  <body>
-    <!-- Navbar start -->
+  <body x-data="{
+      selectedItem: null,
+      items: [ 
+        { id: 1, name: 'Americano', img: 'americano.jpg', price: 25000, detail: 'Americano bukan sekadar kopi biasa. Di balik kesederhanaannya, Americano memiliki pesona tersendiri bagi para penikmat kopi yang ingin menikmati rasa kopi murni.' },
+        { id: 2, name: 'Latte', img: 'latte.jpg', price: 30000, detail: 'Minuman klasik ini terbuat dari perpaduan espresso yang kaya rasa dan susu steamed yang lembut, menghasilkan rasa yang seimbang dan aroma yang menggoda.' },
+        { id: 3, name: 'Espresso', img: 'espresso.jpg', price: 50000, detail: 'Tingkatkan pengalaman minum kopi Anda dengan Espresso, ramuan kopi terkonsentrasi yang kaya rasa dan aroma. Setiap tegukan Espresso menghadirkan ledakan rasa yang tak terlupakan.' },
+        { id: 4, name: 'Cappuccino', img: 'cappuccino.jpg', price: 40000, detail: 'Perpaduan sempurna antara espresso, susu panas yang creamy, dan busa susu yang lembut menghasilkan rasa yang kaya, aroma yang menggoda, dan tekstur yang begitu memanjakan lidah.' },
+        { id: 5, name: 'Macchiato', img: 'macchiato.jpg', price: 45000, detail: 'Rasakan sensasi istimewa Kopi Macchiato dari kedai kopi kami! Perpaduan sempurna antara espresso yang kuat dan susu yang lembut, menghasilkan rasa yang unik dan aroma yang menggoda.' },
+        { id: 6, name: 'Mineral Water', img: 'air mineral.jpg', price: 5000, detail: 'Tetap terhidrasi dengan Air Putih yang murni dan menyehatkan. Pilihan tepat untuk menjaga kesehatan tubuh dan mengobati rasa haus.' },
+        { id: 7, name: 'Es Jeruk', img: 'jeruk.jpg', price: 12000, detail: 'Kaya akan vitamin C dan antioksidan, Es Jeruk kami membantu meningkatkan daya tahan tubuh dan memberikan sensasi asam segar yang menyegarkan.' },
+        { id: 8, name: 'Es Kelapa Muda', img: 'kelapa muda.jpg', price: 20000, detail: 'Rasakan kesegaran alami dari air kelapa muda yang kaya mineral. Menyejukkan tubuh dan membantu melancarkan pencernaan.' },
+        { id: 9, name: 'Es Matcha', img: 'matcha.jpg', price: 18000, detail: 'Bagi pecinta rasa unik dan kekinian, Es Matcha kami hadir dengan khasiat teh hijau yang bermanfaat dan rasa teh hijau yang manis dan creamy.' },
+        { id: 10, name: 'Es Milo', img: 'milo.jpg', price: 12000, detail: 'Manjakan diri dengan Es Milo yang manisnya coklat penuh membangkitkan semangat dan membuat ketagihan. Cocok dinikmati kapanpun, dingin maupun hangat.' },
+        { id: 11, name: 'Es Teh', img: 'teh.jpg', price: 8000, detail: 'Dinginkan diri dengan segelas Es Teh yang manis alami dan segar. Cocok untuk menemani hari-harimu yang sibuk dan mengembalikan semangat.' },
+        { id: 12, name: 'Es Soda Gembira', img: 'sodagembira.jpg', price: 15000, detail: 'Perpaduan soda yang mendesis dan sirup manis yang klasik, Es Soda Gembira selalu menjadi favorit untuk menikmati momen ceria bersama teman dan keluarga.' },
+        { id: 13, name: 'Ayam Geprek', img: 'ayamgeprek.jpg', price: 15000, detail: 'Pedas dan menggugah selera, cocok untuk pecinta kuliner pedas.' },
+        { id: 14, name: 'Bakmie Jawa', img: 'bakmie.jpg', price: 15000, detail: 'Tradisional, gurih, kuah kental, mie kuning, irisan ayam, dan bawang goreng.' },
+        { id: 15, name: 'Bakso', img: 'bakso.jpg', price: 25000, detail: 'Bakso kenyal dan kuah kaldu yang lezat, pilihan tepat untuk makan siang atau makan malam.' },
+        { id: 16, name: 'Nasi Gudeg', img: 'gudeg.jpg', price: 20000, detail: 'Manis, gurih, santan lembut, nangka matang, rempah khas, tradisional Yogyakarta, mengenyangkan, lauk khas, cocok disantap pagi atau malam.' },
+        { id: 17, name: 'Gurame Bakar', img: 'gurame.jpg', price: 45000, detail: 'Renyah kulit, daging lembut, bumbu meresap, aroma bakaran, segar, nikmat, khas Indonesia, sajian tradisional, irisan jeruk nipis, disajikan dengan sambal terasi.' },
+        { id: 18, name: 'Nasi Bakar', img: 'nasibakar.jpg', price: 35000, detail: 'Harum, gurih, dibungkus daun pisang, tekstur krispi, aneka isian, tradisional, cita rasa pedas-manis, menggugah selera, cocok di acara piknik.' },
+        { id: 19, name: 'Nasi Goreng', img: 'nasigoreng.jpg', price: 25000, detail: 'Selalu jadi favorit, dengan berbagai topping yang bisa kamu pilih sesuai selera.' },
+        { id: 20, name: 'Nasi Rawon', img: 'rawon.jpg', price: 25000, detail: 'Kaya rempah dan daging sapi yang empuk, bikin kamu hangat dan berenergi.' },
+        { id: 21, name: 'Sate Ayam', img: 'sate.jpeg', price: 15000, detail: 'Daging yang empuk dan kaya bumbu, dibakar dengan sempurna, bikin kamu gak bisa berhenti makan!' },
+        { id: 22, name: 'Sop Iga', img: 'sopiga.jpg', price: 30000, detail: 'Gurih, lezat, hangat, kuah kental, daging empuk, wangi rempah, sehat, menggugah selera, cocok di musim hujan.' },
+        { id: 23, name: 'Soto Ayam', img: 'sotoayam.jpg', price: 15000, detail: 'Kuah gurih dan hangat, ayam suwir yang empuk, dan aneka pelengkap yang menggoda, bikin kamu ketagihan!' },
+        { id: 24, name: 'Steak', img: 'steak.jpg', price: 55000, detail: 'Juicy, tender, grilled to perfection, savory, charred edges, medium rare, flavorful marinade, satisfying, premium cut, mouthwatering.' },   
+      ],
+      showItemDetail(item) {
+          this.selectedItem = item;
+          document.getElementById('item-detail-modal').style.display = 'block';
+      },
+      closeModal() {
+          this.selectedItem = null;
+          document.getElementById('item-detail-modal').style.display = 'none';
+      },
+      rupiah(number) {
+          return 'Rp ' + number.toLocaleString('id-ID');
+      }
+    }">
 
+    <!-- Navbar start -->
     <nav class="navbar" x-data>
-      <marquee
-        width="30%"
-        direction="right"
-        behavior="scroll"
-        scrollamount="3"
-        class="blink"
-      >
-        <a href="#" @click.prevent="" class="navbar-logo"
-          >Kedai<span>Kopi</span>.</a
-        >
+      <marquee width="30%" direction="right" behavior="scroll" scrollamount="3" class="blink">
+        <a href="#" @click.prevent="" class="navbar-logo">Kedai<span>Kopi</span>.</a>
       </marquee>
 
       <div class="navbar-nav">
@@ -61,11 +90,7 @@
         <a href="#" id="search-button"><i data-feather="search"></i></a>
         <a href="#" id="shopping-cart-button">
           <i data-feather="shopping-cart"></i>
-          <span
-            class="quantity-badge"
-            x-show="$store.cart.quantity"
-            x-text="$store.cart.quantity"
-          ></span>
+          <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>
         </a>
         <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
       </div>
@@ -110,42 +135,18 @@
             <h5>Detail Pembeli</h5>
             <label for="name">
               <span>Nama</span>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                x-model="$store.cart.customer.name"
-                required
-              />
+              <input type="text" name="name" id="name" x-model="$store.cart.customer.name" required />
             </label>
             <label for="email">
               <span>Email</span>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                x-model="$store.cart.customer.email"
-                required
-              />
+              <input type="email" name="email" id="email" x-model="$store.cart.customer.email" required />
             </label>
             <label for="phone">
               <span>No Hp</span>
-              <input
-                type="number"
-                name="phone"
-                id="phone"
-                x-model="$store.cart.customer.phone"
-                required
-                autocomplete="off"
-              />
+              <input type="number" name="phone" id="phone" x-model="$store.cart.customer.phone" required autocomplete="off" />
             </label>
 
-            <button
-              class="checkout-button disabled"
-              type="submit"
-              id="checkout-button"
-              value="checkout"
-            >
+            <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">
               Pesan
             </button>
           </form>
@@ -196,29 +197,19 @@
     <section id="menu" class="menu">
       <h2><span>Menu</span> Kami</h2>
       <p>
-        Kami menyediakan berbagai minuman dan makanan yang mengugah selera dan
+        Kami menyediakan berbagai minuman dan makanan yang menggugah selera dan
         menyegarkan, cocok untuk menemani momen-momen spesial Anda. Berikut
-        beberapa pilihan menu kami:
+        beberapa pilihan menu kami :
       </p>
       <br /><br />
 
       <h2 id="minuman"><span>Minu</span>man</h2>
-      <marquee
-        direction="right"
-        behavior="scroll"
-        onmouseover="this.stop();"
-        onmouseout="this.start();"
-        scrollamount="20"
-      >
+      <marquee direction="right" behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="20">
         <div class="row">
           <div class="menu-card">
-            <img
-              src="img/menu/americano.jpg"
-              alt="Americano"
-              class="menu-card-img"
-            />
+            <img src="img/menu/americano.jpg" alt="Americano" class="menu-card-img" />
             <h3 class="menu-card-title">- Americano -</h3>
-            <p class="menu-card-price">Rp 20.000</p>
+            <p class="menu-card-price">Rp 25.000</p>
           </div>
           <div class="menu-card">
             <img src="img/menu/latte.jpg" alt="Latte" class="menu-card-img" />
@@ -226,198 +217,124 @@
             <p class="menu-card-price">Rp 30.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/espresso.jpg"
-              alt="Espresso"
-              class="menu-card-img"
-            />
+            <img src="img/menu/espresso.jpg" alt="Espresso" class="menu-card-img" />
             <h3 class="menu-card-title">- Espresso -</h3>
             <p class="menu-card-price">Rp 50.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/cappuccino.jpg"
-              alt="Cappuccino"
-              class="menu-card-img"
-            />
+            <img src="img/menu/cappuccino.jpg" alt="Cappuccino" class="menu-card-img" />
             <h3 class="menu-card-title">- Cappuccino -</h3>
             <p class="menu-card-price">Rp 40.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/macchiato.jpg"
-              alt="Macchiato"
-              class="menu-card-img"
-            />
+            <img src="img/menu/macchiato.jpg" alt="Macchiato" class="menu-card-img" />
             <h3 class="menu-card-title">- Macchiato -</h3>
             <p class="menu-card-price">Rp 45.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/teh.jpg" alt="Teh" class="menu-card-img" />
-            <h3 class="menu-card-title">- Teh -</h3>
-            <p class="menu-card-price">Rp 7.000</p>
+            <img src="img/menu/teh.jpg" alt="Es Teh" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Teh -</h3>
+            <p class="menu-card-price">Rp 8.000</p>
           </div>
         </div>
       </marquee>
-      <marquee
-        direction="left"
-        behavior="scroll"
-        onmouseover="this.stop();"
-        onmouseout="this.start();"
-        scrollamount="20"
-      >
+      <marquee direction="left" behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="20">
         <div class="row">
           <div class="menu-card">
-            <img
-              src="img/menu/sodagembira.jpg"
-              alt="Soda Gembira"
-              class="menu-card-img"
-            />
-            <h3 class="menu-card-title">- Soda Gembira -</h3>
+            <img src="img/menu/sodagembira.jpg" alt="Es Soda Gembira" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Soda Gembira -</h3>
             <p class="menu-card-price">Rp 15.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/jeruk.jpg" alt="Jeruk" class="menu-card-img" />
-            <h3 class="menu-card-title">- Jeruk -</h3>
-            <p class="menu-card-price">Rp 8.000</p>
+            <img src="img/menu/jeruk.jpg" alt="Es Jeruk" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Jeruk -</h3>
+            <p class="menu-card-price">Rp 12.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/air mineral.jpg"
-              alt="Air Mineral"
-              class="menu-card-img"
-            />
-            <h3 class="menu-card-title">- Air Mineral -</h3>
+            <img src="img/menu/air mineral.jpg" alt="Mineral Water" class="menu-card-img" />
+            <h3 class="menu-card-title">- Mineral Water -</h3>
             <p class="menu-card-price">Rp 5.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/matcha.jpg" alt="Matcha" class="menu-card-img" />
-            <h3 class="menu-card-title">- Matcha -</h3>
-            <p class="menu-card-price">Rp 14.000</p>
+            <img src="img/menu/matcha.jpg" alt="Es Matcha" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Matcha -</h3>
+            <p class="menu-card-price">Rp 18.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/milo.jpg" alt="Milo" class="menu-card-img" />
-            <h3 class="menu-card-title">- Milo -</h3>
-            <p class="menu-card-price">Rp 14.000</p>
+            <img src="img/menu/milo.jpg" alt="Es Milo" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Milo -</h3>
+            <p class="menu-card-price">Rp 12.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/kelapa muda.jpg"
-              alt="Kelapa Muda"
-              class="menu-card-img"
-            />
-            <h3 class="menu-card-title">- Kelapa Muda -</h3>
-            <p class="menu-card-price">Rp 15.000</p>
+            <img src="img/menu/kelapa muda.jpg" alt="Es Kelapa Muda" class="menu-card-img" />
+            <h3 class="menu-card-title">- Es Kelapa Muda -</h3>
+            <p class="menu-card-price">Rp 20.000</p>
           </div>
         </div>
       </marquee>
-
       <br /><br />
+
       <h2 id="makanan"><span>Maka</span>nan</h2>
-      <marquee
-        direction="left"
-        behavior="scroll"
-        onmouseover="this.stop();"
-        onmouseout="this.start();"
-        scrollamount="20"
-      >
+      <marquee direction="left" behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="20">
         <div class="row">
           <div class="menu-card">
-            <img
-              src="img/menu/nasigoreng.jpg"
-              alt="Nasi Goreng"
-              class="menu-card-img"
-            />
+            <img src="img/menu/nasigoreng.jpg" alt="Nasi Goreng" class="menu-card-img" />
             <h3 class="menu-card-title">- Nasi Goreng -</h3>
-            <p class="menu-card-price">Rp 15.000</p>
-          </div>
-          <div class="menu-card">
-            <img
-              src="img/menu/gudeg.jpg"
-              alt="Nasi Gudeg"
-              class="menu-card-img"
-            />
-            <h3 class="menu-card-title">- Nasi Gudeg -</h3>
             <p class="menu-card-price">Rp 25.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/bakmie.jpg" alt="Bakmie" class="menu-card-img" />
-            <h3 class="menu-card-title">- Bakmie -</h3>
-            <p class="menu-card-price">Rp 17.000</p>
+            <img src="img/menu/gudeg.jpg" alt="Nasi Gudeg" class="menu-card-img" />
+            <h3 class="menu-card-title">- Nasi Gudeg -</h3>
+            <p class="menu-card-price">Rp 20.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/rawon.jpg"
-              alt="Nasi Rawon"
-              class="menu-card-img"
-            />
+            <img src="img/menu/bakmie.jpg" alt="Bakmie Jawa" class="menu-card-img" />
+            <h3 class="menu-card-title">- Bakmie Jawa -</h3>
+            <p class="menu-card-price">Rp 15.000</p>
+          </div>
+          <div class="menu-card">
+            <img src="img/menu/rawon.jpg" alt="Nasi Rawon" class="menu-card-img" />
             <h3 class="menu-card-title">- Nasi Rawon -</h3>
-            <p class="menu-card-price">Rp 20.000</p>
+            <p class="menu-card-price">Rp 25.000</p>
           </div>
           <div class="menu-card">
-            <img src="img/menu/sate.jpeg" alt="Sate" class="menu-card-img" />
-            <h3 class="menu-card-title">- Sate -</h3>
-            <p class="menu-card-price">Rp 20.000</p>
+            <img src="img/menu/sate.jpeg" alt="Sate Ayam" class="menu-card-img" />
+            <h3 class="menu-card-title">- Sate Ayam -</h3>
+            <p class="menu-card-price">Rp 15.000</p>
           </div>
           <div class="menu-card">
             <img src="img/menu/steak.jpg" alt="Steak" class="menu-card-img" />
             <h3 class="menu-card-title">- Steak -</h3>
-            <p class="menu-card-price">Rp 120.000</p>
+            <p class="menu-card-price">Rp 55.000</p>
           </div>
         </div>
       </marquee>
-      <marquee
-        direction="right"
-        behavior="scroll"
-        onmouseover="this.stop();"
-        onmouseout="this.start();"
-        scrollamount="20"
-      >
+      <marquee direction="right" behavior="scroll" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="20">
         <div class="row">
           <div class="menu-card">
-            <img
-              src="img/menu/ayamgeprek.jpg"
-              alt="Ayam Geprek"
-              class="menu-card-img"
-            />
+            <img src="img/menu/ayamgeprek.jpg" alt="Ayam Geprek" class="menu-card-img" />
             <h3 class="menu-card-title">- Ayam Geprek -</h3>
-            <p class="menu-card-price">Rp 18.000</p>
+            <p class="menu-card-price">Rp 15.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/sotoayam.jpg"
-              alt="Soto Ayam"
-              class="menu-card-img"
-            />
+            <img src="img/menu/sotoayam.jpg" alt="Soto Ayam" class="menu-card-img" />
             <h3 class="menu-card-title">- Soto Ayam -</h3>
             <p class="menu-card-price">Rp 15.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/gurame.jpg"
-              alt="Gurame Bakar"
-              class="menu-card-img"
-            />
+            <img src="img/menu/gurame.jpg" alt="Gurame Bakar" class="menu-card-img" />
             <h3 class="menu-card-title">- Gurame Bakar -</h3>
             <p class="menu-card-price">Rp 45.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/sopiga.jpg"
-              alt="Sop Iga"
-              class="menu-card-img"
-            />
+            <img src="img/menu/sopiga.jpg" alt="Sop Iga" class="menu-card-img" />
             <h3 class="menu-card-title">- Sop Iga -</h3>
             <p class="menu-card-price">Rp 30.000</p>
           </div>
           <div class="menu-card">
-            <img
-              src="img/menu/nasibakar.jpg"
-              alt="Nasi Bakar"
-              class="menu-card-img"
-            />
+            <img src="img/menu/nasibakar.jpg" alt="Nasi Bakar" class="menu-card-img" />
             <h3 class="menu-card-title">- Nasi Bakar -</h3>
-            <p class="menu-card-price">Rp 18.000</p>
+            <p class="menu-card-price">Rp 35.000</p>
           </div>
           <div class="menu-card">
             <img src="img/menu/bakso.jpg" alt="Bakso" class="menu-card-img" />
@@ -434,7 +351,7 @@
       <h2><span>Peme</span>sanan</h2>
 
       <p>
-        Anda dapat memesan minuman yang Anda inginkan dengan mudah, cepat, dan
+        Anda dapat memesan minuman dan makanan yang Anda inginkan dengan mudah, cepat, dan
         nyaman di kedai kopi kami.
       </p>
 
@@ -455,8 +372,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#star" />
                 </svg>
                 <svg
@@ -466,8 +382,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#star" />
                 </svg>
                 <svg
@@ -477,8 +392,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#star" />
                 </svg>
                 <svg
@@ -488,8 +402,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#star" />
                 </svg>
                 <svg
@@ -499,8 +412,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#star" />
                 </svg>
               </div>
@@ -515,16 +427,11 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#shopping-cart" />
                 </svg>
               </a>
-              <a
-                href="#"
-                class="item-detail-button"
-                @click.prevent="$store.cart.show()"
-              >
+              <a href="#" @click.prevent="showItemDetail(item)">
                 <svg
                   width="24"
                   height="24"
@@ -532,8 +439,7 @@
                   stroke="currentColor"
                   stroke-width="2"
                   stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
+                  stroke-linejoin="round">
                   <use href="img/feather-sprite.svg#eye" />
                 </svg>
               </a>
@@ -563,8 +469,8 @@
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          class="map"
-        ></iframe>
+          class="map">
+        </iframe>
 
         <form action="">
           <div class="input-group">
@@ -588,13 +494,9 @@
     <!-- Footer start -->
     <footer>
       <div class="socials">
-        <a href="https://www.instagram.com/accounts/login/"
-          ><i data-feather="instagram"></i
-        ></a>
+        <a href="https://www.instagram.com/accounts/login/"><i data-feather="instagram"></i></a>
         <a href="https://x.com/login"><i data-feather="twitter"></i></a>
-        <a href="https://web.facebook.com/login.php/?_rdc=1&_rdr"
-          ><i data-feather="facebook"></i
-        ></a>
+        <a href="https://web.facebook.com/login.php/?_rdc=1&_rdr"><i data-feather="facebook"></i></a>
       </div>
 
       <div class="links">
@@ -611,22 +513,19 @@
     <!-- Footer end -->
 
     <!-- Modal Box Item Detail start -->
-  <div class="modal" id="item-detail-modal">
-    <div class="modal-container">
-      <a href="#" class="close-icon"><i data-feather="x"></i></a>
+    <div id="item-detail-modal" class="modal">
       <div class="modal-content">
-        <img src="img/products/latte.jpg" alt="latte">
-        <div class="product-content">
-          <h3>Product 1</h3>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Provident, tenetur cupiditate facilis obcaecati
-            ullam maiores minima quos perspiciatis similique itaque, esse rerum eius repellendus voluptatibus!</p>
-          <div class="product-price">Rp <span>30K</span></div>
-          <a href="#"><i data-feather="shopping-cart"></i> <span>add to cart</span></a>
+        <span class="close" @click="closeModal()">&times;</span>
+        <h2 x-text="selectedItem ? selectedItem.name : ''"></h2>
+        <img :src="selectedItem ? 'img/products/' + selectedItem.img : ''" :alt="selectedItem ? selectedItem.name : ''">
+        <p x-text="selectedItem ? selectedItem.detail : ''"></p>
+        <div class="modal-footer">
+          <div x-text="selectedItem ? rupiah(selectedItem.price) : ''" class="product-price-modal"></div>
+          <button class="btn" @click="$store.cart.add(selectedItem)">Tambah ke Keranjang</button>
         </div>
       </div>
     </div>
-  </div>
-  <!-- Modal Box Item Detail end -->
+    <!-- Modal Box Item Detail end -->
 
     <!-- Feather Icons -->
     <script>
