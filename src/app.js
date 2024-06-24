@@ -83,7 +83,15 @@ document.addEventListener("alpine:init", () => {
       const customerMessage = `\n\nCustomer Details:\nName: ${this.customer.name}\nEmail: ${this.customer.email}\nPhone: ${this.customer.phone}`;
       const whatsappMessage = encodeURIComponent(`${message}\n\n${totalMessage}${customerMessage}`);
       const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
-      window.open(whatsappUrl, '_blank');
+      
+      let loaded = setInterval(() => {
+        document.getElementById('preloader').style.display = 'flex';
+      },1000)
+      setTimeout(() => {
+        clearInterval(loaded);
+        document.getElementById('preloader').style.display = 'none';
+        window.open(whatsappUrl, '_blank');
+      },3000)
     },
   });
 });

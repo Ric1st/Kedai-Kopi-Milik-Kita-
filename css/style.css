@@ -44,7 +44,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 2;
 }
 
 .navbar .navbar-logo {
@@ -632,7 +632,7 @@ footer .credit span {
 .modal {
   display: none; 
   position: fixed; 
-  z-index: 1000; 
+  z-index: 3; 
   left: 0;
   top: 0;
   width: 100%;
@@ -747,6 +747,61 @@ footer .credit span {
   background: white; 
 }
 
+#preloader{
+  display: none;
+  background:  #E0A75E;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  z-index: 5;
+}
+
+.cup{
+  height: 11rem;
+  width: 12rem;
+  border: 6px solid white;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  border-radius: 0 0 70px 70px;
+  background: url('../img/coffee.png');
+  box-shadow: 0 0 0 6px var(--primary);
+  background-repeat: repeat-x;
+  background-position: 0px 140px;
+  animation: fill 4s infinite;
+}
+
+@keyframes fill {
+    0%{
+      background-position: 0px 120px;
+    }
+    20%{
+      background-position: -450px 90px;
+    }
+    40%{
+      background-position: -900px 60px;
+    }
+    60%{
+      background-position: -1350px 30px;
+    }
+    80%{
+      background-position: -1500px 0px;
+    }
+    80%{
+      background-position: 0px 140px;
+    }
+}
+
+.handle{
+  height: 70px;
+  width: 40px;
+  background-color: transparent;
+  border: 6px solid white;
+  position: relative;
+  left: 11.3rem;
+  border-radius: 0 25px 80px 0;
+}
+
 /* Media Queries */
 /* Laptop */
 @media (max-width: 1366px) {
@@ -760,6 +815,15 @@ footer .credit span {
 
   .shopping-cart {
     height: 100vh;
+  }
+  .handle{
+    height: 50px;
+    width: 40px;
+    background-color: transparent;
+    border: 6px solid white;
+    position: relative;
+    left: 11rem;
+    border-radius: 0 25px 80px 0;
   }
 }
 
@@ -853,3 +917,4 @@ footer .credit span {
     font-size: 55%;
   }
 }
+
