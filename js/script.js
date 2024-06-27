@@ -247,7 +247,7 @@ function showModal(product) {
   document.querySelector(".product-price-modal").innerText = product.price;
   
   modal.style.display = "block";
-  
+      
   const button = document.querySelector(".btn-add");
   button.style.display = "none";
   window.location.href = "#products";

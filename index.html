@@ -143,9 +143,9 @@
               <span>Nama</span>
               <input type="text" name="name" id="name" x-model="$store.cart.customer.name" required />
             </label>
-            <label for="email">
-              <span>Email</span>
-              <input type="email" name="email" id="email" x-model="$store.cart.customer.email" required />
+            <label for="table">
+              <span>No Meja</span>
+              <input type="table" name="table" id="table" x-model="$store.cart.customer.table" required />
             </label>
             <label for="phone">
               <span>No Hp</span>
@@ -527,6 +527,7 @@
     <div id="item-detail-modal" class="modal">
       <div class="modal-content">
         <span class="close" @click="closeModal()">&times;</span>
+        <p id="identitas"></p>
         <h2 id="modal-product-name" x-text="selectedItem ? selectedItem.name : ''"></h2>
         <img id="modal-product-image" :src="selectedItem ? 'img/products/' + selectedItem.img : ''" :alt="selectedItem ? selectedItem.name : ''">
         <p id="modal-product-detail" x-text="selectedItem ? selectedItem.detail : ''"></p>

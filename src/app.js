@@ -32,9 +32,10 @@ document.addEventListener("alpine:init", () => {
     items: [],
     total: 0,
     quantity: 0,
+    antrian: 1,
     customer: {
       name: '',
-      email: '',
+      table: '',
       phone: ''
     },
     add(newItem) {
@@ -78,10 +79,11 @@ document.addEventListener("alpine:init", () => {
       }
     },
     checkout() {
+      const antri = "Nomer Antrian : " + this.antrian;
       const message = "Detail Pesanan : \n" + this.items.map(item => `${item.name} \t ${item.quantity} x ${rupiah(item.price)} = ${rupiah(item.total)}`).join('\n');
       const totalMessage = `Total: ${rupiah(this.total)}`;
-      const customerMessage = `\n\nCustomer Details:\nName: ${this.customer.name}\nEmail: ${this.customer.email}\nPhone: ${this.customer.phone}`;
-      const whatsappMessage = encodeURIComponent(`${message}\n\n${totalMessage}${customerMessage}`);
+      const customerMessage = `\n\nCustomer Details:\nName: ${this.customer.name}\nMeja: ${this.customer.table}\nPhone: ${this.customer.phone}`;
+      const whatsappMessage = encodeURIComponent(`${antri}\n\n${message}\n\n${totalMessage}${customerMessage}`);
       const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
       
       let loaded = setInterval(() => {
@@ -92,6 +94,8 @@ document.addEventListener("alpine:init", () => {
         document.getElementById('preloader').style.display = 'none';
         window.open(whatsappUrl, '_blank');
       },3000)
+
+      this.antrian ++;
     },
   });
 });
