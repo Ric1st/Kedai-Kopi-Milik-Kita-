@@ -63,6 +63,7 @@
           this.selectedItem = item;
           document.getElementById('item-detail-modal').style.display = 'block';
           document.querySelector('.btn-add').style.display = 'block';
+          console.log(item);
       },
       closeModal() {
           this.selectedItem = null;
@@ -145,7 +146,7 @@
             </label>
             <label for="table">
               <span>No Meja</span>
-              <input type="table" name="table" id="table" x-model="$store.cart.customer.table" required />
+              <input type="number" name="table" id="table" x-model="$store.cart.customer.table" required />
             </label>
             <label for="phone">
               <span>No Hp</span>
