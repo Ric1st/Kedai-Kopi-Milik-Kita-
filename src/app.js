@@ -38,6 +38,12 @@ document.addEventListener("alpine:init", () => {
       table: '',
       phone: ''
     },
+    complain:{
+      nama:'',
+      email:'',
+      telp:'',
+      saran:''
+    },
     add(newItem) {
       const cartItem = this.items.find((item) => item.id === newItem.id);
       if(!cartItem) {

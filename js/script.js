@@ -269,3 +269,17 @@ document.getElementById("search-box").addEventListener("keypress", function(even
       checkInput();
   }
 });
+
+////////////////////////////////////////////////////////
+function komplain() {
+  let nama = document.getElementById("nama").value;
+  let email = document.getElementById("email").value;
+  let telp = document.getElementById("telp").value;
+  let saran = document.getElementById("saran").value;
+
+  const message = "Kritik dan Saran : ";
+  const customerMessage = `Customer Details :\nName : ${nama}\nEmail : ${email}\nNo Telp : ${telp}\nPesan : ${saran}`;
+  const whatsappMessage = encodeURIComponent(`${message}\n\n${customerMessage}`);
+  const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
+  window.open(whatsappUrl, '_blank');
+}
