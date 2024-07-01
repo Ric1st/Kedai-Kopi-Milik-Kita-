@@ -277,9 +277,13 @@ function komplain() {
   let telp = document.getElementById("telp").value;
   let saran = document.getElementById("saran").value;
 
-  const message = "Kritik dan Saran : ";
-  const customerMessage = `Customer Details :\nName : ${nama}\nEmail : ${email}\nNo Telp : ${telp}\nPesan : ${saran}`;
-  const whatsappMessage = encodeURIComponent(`${message}\n\n${customerMessage}`);
-  const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
-  window.open(whatsappUrl, '_blank');
+  if(nama == '' || email=='' || telp=='' || saran==''){
+    document.getElementById('alert').style.display = 'block';
+  }else{
+    const message = "Kritik dan Saran : ";
+    const customerMessage = `Customer Details :\nName : ${nama}\nEmail : ${email}\nNo Telp : ${telp}\nPesan : ${saran}`;
+    const whatsappMessage = encodeURIComponent(`${message}\n\n${customerMessage}`);
+    const whatsappUrl = `https://wa.me/6281932067656?text=${whatsappMessage}`;
+    window.open(whatsappUrl, '_blank');
+  }
 }
